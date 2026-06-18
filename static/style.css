@@ -41,6 +41,59 @@
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/* Light Theme Variables Override */
+:root.light-theme {
+  --bg-primary: #f1f5f9;
+  --bg-sidebar: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-hover: rgba(15, 23, 42, 0.16);
+  
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  
+  --primary-color: #2563eb;
+  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --x-blue: #0f172a;
+  
+  /* Category Backdrops (Optimized for light readability) */
+  --color-feature-bg: rgba(16, 185, 129, 0.12);
+  --color-announcement-bg: rgba(139, 92, 246, 0.12);
+  --color-deprecation-bg: rgba(244, 63, 94, 0.12);
+  --color-bugfix-bg: rgba(245, 158, 11, 0.12);
+  --color-other-bg: rgba(6, 182, 212, 0.12);
+}
+
+/* Light Theme Dialog Adjustments */
+:root.light-theme .tweet-dialog {
+  background: #ffffff;
+  color: #0f172a;
+}
+:root.light-theme .tweet-dialog .dialog-header,
+:root.light-theme .tweet-dialog .tweet-actions-bar,
+:root.light-theme .tweet-dialog .release-note-snippet {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+:root.light-theme .tweet-dialog #tweetContent {
+  color: #0f172a;
+}
+:root.light-theme .tweet-dialog .release-note-snippet {
+  background-color: #f8fafc;
+}
+:root.light-theme .tweet-dialog .snippet-box {
+  background-color: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #334155;
+}
+:root.light-theme .tweet-dialog .snippet-box h3 {
+  color: #0f172a;
+}
+:root.light-theme .char-progress circle.bg {
+  stroke: rgba(15, 23, 42, 0.06);
+}
+
 /* Reset & Base Styles */
 * {
   margin: 0;
@@ -55,7 +108,25 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Smooth Transitions for Layout and Components */
+.sidebar, .main-content, .card, #searchInput, dialog, header, .filter-btn, .btn {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-icon-only {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {

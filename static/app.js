@@ -15,6 +15,9 @@ const skeletonFeed = document.getElementById('skeletonFeed');
 const emptyState = document.getElementById('emptyState');
 const totalCount = document.getElementById('totalCount');
 const lastSyncTime = document.getElementById('lastSyncTime');
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const themeIconSun = themeToggleBtn.querySelector('.theme-icon-sun');
+const themeIconMoon = themeToggleBtn.querySelector('.theme-icon-moon');
 
 // Dialog Elements
 const tweetDialog = document.getElementById('tweetDialog');
@@ -30,12 +33,37 @@ const snippetBox = document.getElementById('snippetBox');
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
+  initializeTheme();
   fetchReleaseNotes();
 });
+
+// Theme Initialization
+function initializeTheme() {
+  const isLightMode = document.documentElement.classList.contains('light-theme');
+  updateThemeIcons(isLightMode);
+}
+
+function updateThemeIcons(isLight) {
+  if (isLight) {
+    themeIconSun.style.display = 'none';
+    themeIconMoon.style.display = 'block';
+  } else {
+    themeIconSun.style.display = 'block';
+    themeIconMoon.style.display = 'none';
+  }
+}
 
 // Event Listeners
 function setupEventListeners() {
   refreshBtn.addEventListener('click', fetchReleaseNotes);
+  
+  // Theme Toggle Listener
+  themeToggleBtn.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.toggle('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    updateThemeIcons(isLight);
+    showToast(isLight ? "Switched to Light Mode ☀️" : "Switched to Dark Mode 🌙");
+  });
   
   // Search with debounce
   let searchTimeout;
